@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 
 # =============================================
-# 1. Create Dummy Data (Python equivalent of R code)
+# 1. Create Dummy Data
 # =============================================
 np.random.seed(123)
 n_patients = 100
@@ -27,18 +27,15 @@ df = pd.DataFrame(data)
 df['age_s'] = df['age'] + df['period']/12  # Create age_s after DataFrame creation
 
 # =============================================
-# 2. Save to CSV with Proper Path Handling
+# 2. Save to CSV in Current Directory
 # =============================================
-target_dir = r"D:\Edouard_Ybanez\Github\Target_Trial_Emulation"
+# Get current working directory dynamically
+current_dir = os.getcwd()  
+
 file_name = "data_censored.csv"
-
-# Create directory if it doesn't exist
-os.makedirs(target_dir, exist_ok=True)
-
-# Create full path
-file_path = os.path.join(target_dir, file_name)
+file_path = os.path.join(current_dir, file_name)
 
 # Save to CSV
 df.to_csv(file_path, index=False)
 
-print(f"CSV file successfully saved at:\n{file_path}")
+print(f"CSV file saved at:\n{file_path}")
